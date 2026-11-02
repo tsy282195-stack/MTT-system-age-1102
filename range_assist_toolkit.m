@@ -16,10 +16,12 @@ for name={'make_passive_range_input','passive_range_options','passive_range_esti
   error('RangeAssist:ToolkitResolution','Wrong toolkit function: %s.',name{1});end
 end
 if include_smoothing
- optional_root=fullfile(root,'third_party','passive_range_toolkit','src','smoothing');
- addpath(optional_root);
- if ~strcmpi(which('smooth_passive_angles'),fullfile(optional_root,'smooth_passive_angles.m'))
-  error('RangeAssist:ToolkitResolution','Wrong toolkit function: smooth_passive_angles.');end
+    expected_file = fullfile(root, 'smooth_passive_angles.m');
+
+    if ~strcmpi(which('smooth_passive_angles'), expected_file)
+        error('RangeAssist:ToolkitResolution', ...
+            'Wrong toolkit function: smooth_passive_angles.');
+    end
 end
 initialized=true;
 end
